@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="sony_context.xml"/>
+    <import resource="toshiba_context.xml"/>
+
+    <!-- simplify passing property args -->
+    <bean id="t1000"
+          class="com.training.spring.impls.robot.ModelT1000"
+          p:hand-ref="toshibaHand"
+          p:leg-ref="toshibaLeg"
+          p:head-ref="toshibaHead">
+
+        <constructor-arg ref="sonyHand"/>
+        <constructor-arg ref="sonyLeg"/>
+        <constructor-arg ref="sonyHead"/>
+    </bean>
+
+    <!-- simplify passing constructor args -->
+    <bean id="t1000Empty" class="com.training.spring.impls.robot.ModelT1000"
+          c:hand-ref="sonyHand"
+          c:leg-ref="sonyLeg"
+          c:head-ref="sonyHead">
+    </bean>
+
+</beans>
